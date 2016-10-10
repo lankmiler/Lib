@@ -4,5 +4,6 @@
 	"keywords": [],
 	"license": "MIT",
 	"type": "project",
-	"version": "1.0"
+	"version": "dev-master",
+	"minimum-stability": "dev"
 }
