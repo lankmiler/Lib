@@ -9,27 +9,22 @@ class Caller {
 	private $_token;
 	private $api_url;
 	private $storage;
+	private $config;
 
-	public function __construct($api_url)
+	public function setConfig($data)
 	{
-		if(empty($api_url)) {
-			throw new \Exception('Empty api url for Api\\Caller');
-		}
-		$this->api_url = $api_url;
-
-		return $this;
+		$this->config = $data;
 	}
 
 	private function accessTokenCall($access_token_url)
 	{
-		$curl = new Curl();
-		return $curl->post($access_token_url, [
-				'grant_type' => 'password',
-				'client_id' => '9jKd2DZR3MgTs1E9dtEfMc7',
-				'client_secret' => 'nAoi82CqHFjawpqZAHDgrCJSMXVS3oW',
-				'username' => 'pavel@incorporatenow.com',
-				'password' => 'incorporatenowapi'
-		]);
+		$curl = new Curl($this->config);
+		return $curl->post($access_token_url, );
+	}
+
+	public function setApiUrl($url)
+	{
+		$this->api_url = $url;
 	}
 
 	private function checkToken()

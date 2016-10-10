@@ -3,5 +3,6 @@
 	"description": "Some classes for my work",
 	"keywords": [],
 	"license": "MIT",
-	"type": "project"
+	"type": "project",
+	"version": "1.0"
 }
