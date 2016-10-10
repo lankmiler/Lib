@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Api;
+namespace Api;
 
 class Token {
 
