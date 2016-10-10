@@ -1,10 +1,12 @@
 {
-	"name": "lankmiler/api",
-	"description": "Some classes for my work",
-	"keywords": [],
-	"license": "MIT",
-	"type": "project",
-	"version": "dev-master",
-	"minimum-stability": "dev",
-	"stable-enough": "dev"
+    "name": "lankmiler/lib",
+    "description": "Some library for me",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pavel Lankmiler",
+            "email": "lankmiler.pavel@gmail.com"
+        }
+    ],
+    "require": {}
 }
