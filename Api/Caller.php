@@ -1,6 +1,6 @@
 <?php
 
-namespace Api;
+namespace Lib\Api;
 
 use \Curl\Curl;
 

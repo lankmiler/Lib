@@ -8,6 +8,13 @@
             "email": "lankmiler.pavel@gmail.com"
         }
     ],
-    "version": "1.0.0",
-    "require": {}
+    "version": "1.0.0,
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "": "Lib/"
+        }
+    },
 }
