@@ -18,8 +18,8 @@ class Caller {
 
 	private function accessTokenCall($access_token_url)
 	{
-		$curl = new Curl($this->config);
-		return $curl->post($access_token_url, );
+		$curl = new Curl();
+		return $curl->post($access_token_url, $this->config);
 	}
 
 	public function setApiUrl($url)
