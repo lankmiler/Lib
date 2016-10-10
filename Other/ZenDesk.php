@@ -67,9 +67,10 @@ class ZenDesk {
             ]
         );
 
-        if(empty($_REQUEST['code']))
-            header('Location: '. $oAuthUrl);
-   
+        if(!array_key_exists('code', $_REQUEST)) {
+            header('Location: ' . $oAuthUrl);
+            exit(0);
+        }
 
         $params = unserialize(base64_decode($_GET['state']));
         $params['code'] = $_REQUEST['code'] or die('Can\'t get code');
