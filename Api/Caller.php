@@ -15,7 +15,7 @@ class Caller {
 	public function setRequest($request)
 	{	
 		$this->request = $request;
-		return $request;
+		return $this;
 	}
 
 	public function setConfig($data)
