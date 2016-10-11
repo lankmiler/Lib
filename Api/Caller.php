@@ -10,6 +10,13 @@ class Caller {
 	private $api_url;
 	private $storage;
 	private $config;
+	private $request;
+
+	public function setRequest($request)
+	{	
+		$this->request = $request;
+		return $request;
+	}
 
 	public function setConfig($data)
 	{
@@ -34,11 +41,11 @@ class Caller {
 
 		if(!empty($response) && is_object($response)) {
 			
-			$_SESSION[PROJECT_NAMESPACE]['api_token'] = [
+			$this->request->session()->put('api_token', [
 				'access_token' => $response->access_token,
 				'token_type' => $response->token_type,
 				'expires_in' => $response->expires_in
-			];
+			]);
 
 			return $this->setToken(
 				$response->access_token, 
