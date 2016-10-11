@@ -34,6 +34,11 @@ class Caller {
 		$this->api_url = $url;
 	}
 
+	public function getRequest()
+	{
+		return $this->request;
+	}
+
 	private function checkToken()
 	{
 		$access_token_url = $this->api_url.'oauth/access_token';
