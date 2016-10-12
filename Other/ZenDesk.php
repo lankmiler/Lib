@@ -21,7 +21,7 @@ class ZenDesk {
 
     private static function getSecret()
     {
-        return '616dec645a727a64b77dd9564b9f301833913b48c489e89baf092f49165f2e5c';
+        return '4f41b437b12053be1e639b191d6b50a7b2aca16c1e4b64d702f31ea4b6ff9652';
     }
 
     public static function instance($params = [])
