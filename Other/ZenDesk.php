@@ -37,9 +37,11 @@ class ZenDesk {
         return $this->token;
     }
 
-    private function __construct($params = [])
+    public function __construct($config)
     {
-        $this->loginDesk($params);
+        $this->setConfig($config);
+        return $this;
+        //$this->loginDesk($params);
     }
 
     private function getSecret()
