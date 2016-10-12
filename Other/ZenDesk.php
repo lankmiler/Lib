@@ -64,7 +64,7 @@ class ZenDesk {
         }
     }
 
-    private function loginDesk($params = [])
+    public function loginDesk($params = [])
     {
         $this->desk = new ZendeskAPI($this->config['subdomain']);
         $this->desk->setAuth('basic', [
