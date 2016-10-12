@@ -42,7 +42,7 @@ class ZenDesk {
         $this->loginDesk($params);
     }
 
-    private static function getSecret()
+    private function getSecret()
     {
         return $this->config['client_secret'];
     }
