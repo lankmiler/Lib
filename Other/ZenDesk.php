@@ -24,10 +24,10 @@ class ZenDesk {
         return '616dec645a727a64b77dd9564b9f301833913b48c489e89baf092f49165f2e5c';
     }
 
-    public static function instance()
+    public static function instance($params = [])
     {
         if(empty(self::$_instance))
-            self::$_instance = new self();
+            self::$_instance = new self($params);
         return self::$_instance;
     }
 
@@ -56,7 +56,7 @@ class ZenDesk {
         }
     }
 
-    private function loginDesk()
+    private function loginDesk($params = [])
     {
         $state = base64_encode(serialize(self::getOauthData()));
         $oAuthUrl= OAuth::getAuthUrl(
@@ -72,13 +72,18 @@ class ZenDesk {
             exit(0);
         }
 
-        $params = unserialize(base64_decode($_GET['state']));
-        $params['code'] = $_REQUEST['code'] or die('Can\'t get code');
-        $params['redirect_uri'] = 'https://' . $_SERVER['HTTP_HOST'] . '/checkout-success';
+        $data = unserialize(base64_decode($_GET['state']));
+        $data['code'] = $_REQUEST['code'] or die('Can\'t get code');
+
+        $data['redirect_uri'] = 'https://' . $_SERVER['HTTP_HOST'] . '/checkout-success';
+        
+        if(array_key_exists('redirect_uri', $params)) {
+            $data['redirect_uri'] = 'https://' . $_SERVER['HTTP_HOST'] . $params['redirect_uri'];
+        }
 
         try {
-            $response = OAuth::getAccessToken(new \GuzzleHttp\Client(), $params['subdomain'], $params);
-            self::$desk = new ZendeskAPI($params['subdomain']);
+            $response = OAuth::getAccessToken(new \GuzzleHttp\Client(), $data['subdomain'], $data);
+            self::$desk = new ZendeskAPI($data['subdomain']);
             self::$desk->setAuth(\Zendesk\API\Utilities\Auth::OAUTH, ['token' => $response->access_token]);
         } catch (\Zendesk\API\Exceptions\ApiResponseException $e) {
             echo "<h1>Error!</h1>";
@@ -124,6 +129,6 @@ class ZenDesk {
 
     private function __construct($params = [])
     {
-        $this->loginDesk();
+        $this->loginDesk($params);
     }
 }
