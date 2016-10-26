@@ -139,7 +139,7 @@ class ZenDesk {
     public function updateTicket($ticket_id, $params = array())
     {
         if(!is_null($this->desk)) {
-            return $this->desk->tickets()->update($ticket_id,['ticket' => [$params]]);
+            return $this->desk->tickets()->update($ticket_id,$params);
         } else {
             return false;
         }
