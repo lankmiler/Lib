@@ -18,7 +18,7 @@
         "google/apiclient": "^2.0",
 
         "phpunit/phpunit": "5.3.*",
-        "phpunit/php-code-coverage": "^3.3.0",
+        "phpunit/php-code-coverage": "^3.3.0"
 
         //"symfony/browser-kit": "^3.0",
         //"symfony/validator": "^3.1",
