@@ -45,18 +45,32 @@ class Caller {
 		$response = $this->accessTokenCall($access_token_url);
 
 		if(!empty($response) && is_object($response)) {
-			
-			$this->request->session()->put('api_token', [
-				'access_token' => $response->access_token,
-				'token_type' => $response->token_type,
-				'expires_in' => $response->expires_in
-			]);
 
-			return $this->setToken(
-				$response->access_token, 
-				$response->token_type, 
-				$response->expires_in
-			);
+			if(method_exists($this->request, 'session')) {
+				$this->request->session()->put('api_token', [
+					'access_token' => $response->access_token,
+					'token_type' => $response->token_type,
+					'expires_in' => $response->expires_in
+				]);
+
+				return $this->setToken(
+					$response->access_token, 
+					$response->token_type, 
+					$response->expires_in
+				);
+			} else {
+				save_var('api_token', [
+					'access_token' => $response->access_token,
+					'token_type' => $response->token_type,
+					'expires_in' => $response->expires_in
+				]);
+
+				return $this->setToken(
+					$response->access_token, 
+					$response->token_type, 
+					$response->expires_in
+				);
+			}
 		}
 
 		return false;
