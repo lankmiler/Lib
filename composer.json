@@ -10,7 +10,7 @@
     ],
     "require": {
         "stripe/stripe-php": "^3.21",
-        "symfony/http-foundation": "^3.1",
+        //"symfony/http-foundation": "^3.1",
         "zendesk/zendesk_api_client_php": "@dev",
         "stripe/stripe-php": "3.*",
         "php-curl-class/php-curl-class": "^7.0",
@@ -20,12 +20,12 @@
         "phpunit/phpunit": "5.3.*",
         "phpunit/php-code-coverage": "^3.3.0",
 
-        "symfony/browser-kit": "^3.0",
-        "symfony/validator": "^3.1",
-        "symfony/config": "^3.1",
-        "symfony/translation": "^3.0",
-        "symfony/form": "^3.1",
-        "symfony/security-csrf": "^3.1"
+        //"symfony/browser-kit": "^3.0",
+        //"symfony/validator": "^3.1",
+        //"symfony/config": "^3.1",
+        //"symfony/translation": "^3.0",
+        //"symfony/form": "^3.1",
+        //"symfony/security-csrf": "^3.1"
     },
     "version": "1.0.0",
     "autoload": {
