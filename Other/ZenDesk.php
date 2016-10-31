@@ -130,6 +130,12 @@ class ZenDesk {
     public function createTicket($params)
     {
         if(!is_null($this->desk)) {
+            $params['custom_fields'] = array(
+                array(
+                    'id' => '44975608',
+                    'value' => $_SERVER['REMOTE_ADDR']
+                )
+            );
             return $this->desk->tickets()->create($params);
         } else {
             return false;
