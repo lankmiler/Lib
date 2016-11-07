@@ -42,13 +42,11 @@ class Token {
 	public function setAccessToken($token)
 	{
 		$this->access_token = $token;
-		return $token;
+		return $this;
 	}
 
 	public function getAccessToken()
 	{
 		return $this->access_token;
 	}
-
-
 }

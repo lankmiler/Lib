@@ -11,9 +11,6 @@ class ZenDesk {
 	public $desk;
     private $token;
     private $config;
-    // private static $_instance;
-    // private static $username = 'cl@incorporatenow.com';
-    // private static $subdomain = 'incorporatenow';
 
     public function setConfig($config)
     {
@@ -39,9 +36,7 @@ class ZenDesk {
 
     public function __construct($config)
     {
-        $this->setConfig($config);
-        return $this;
-        //$this->loginDesk($params);
+        return $this->setConfig($config);
     }
 
     private function getSecret()
@@ -59,8 +54,9 @@ class ZenDesk {
         try {
             return $this->desk->tickets()->findAll();
         } catch (ApiResponseException $e) {
-            echo $e->getMessage();
-            die();
+            return [
+                'error' => $e->getMessage()
+            ];
         }
     }
 
@@ -73,40 +69,6 @@ class ZenDesk {
         ]);
 
         return $this;
-        // $state = base64_encode(serialize([
-        //     'subdomain'
-        // ]));
-        // $oAuthUrl= OAuth::getAuthUrl(
-        //     self::$subdomain,
-        //     [
-        //         'client_id' => 'incorporate',
-        //         'state' => $state,
-        //     ]
-        // );
-
-        // if(!array_key_exists('code', $_REQUEST)) {
-        //     header('Location: ' . $oAuthUrl);
-        //     exit(0);
-        // }
-
-        // $data = unserialize(base64_decode($_GET['state']));
-        // $data['code'] = $_REQUEST['code'] or die('Can\'t get code');
-
-        // $data['redirect_uri'] = 'https://' . $_SERVER['HTTP_HOST'] . '/checkout-success';
-        
-        // if(array_key_exists('redirect_uri', $params)) {
-        //     $data['redirect_uri'] = 'https://' . $_SERVER['HTTP_HOST'] . $params['redirect_uri'];
-        // }
-
-        // try {
-        //     $response = OAuth::getAccessToken(new \GuzzleHttp\Client(), $data['subdomain'], $data);
-        //     self::$desk = new ZendeskAPI($data['subdomain']);
-        //     self::$desk->setAuth(\Zendesk\API\Utilities\Auth::OAUTH, ['token' => $response->access_token]);
-        // } catch (\Zendesk\API\Exceptions\ApiResponseException $e) {
-        //     echo "<h1>Error!</h1>";
-        //     echo "<p>We couldn't get an access token for you (ZenDesk::loginDesk). Please check your credentials and try again.</p>";
-        //     echo "<p>" . $e->getMessage() . "</p>";
-        // }
     }
 
     public function getComment($ticket_id)
@@ -138,7 +100,7 @@ class ZenDesk {
             );
             return $this->desk->tickets()->create($params);
         } else {
-            return false;
+            throw new \Exception('zend desk instance is empty. Please initiate it.');
         }
     }
 
@@ -147,7 +109,7 @@ class ZenDesk {
         if(!is_null($this->desk)) {
             return $this->desk->tickets()->update($ticket_id,$params);
         } else {
-            return false;
+            throw new \Exception('zend desk instance is empty. Please initiate it.');
         }
     }
 }
