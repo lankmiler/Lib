@@ -11,6 +11,7 @@ class ZenDesk {
 	public $desk;
     private $token;
     private $config;
+    private $default_fields = [];
 
     public function setConfig($config)
     {
@@ -32,6 +33,11 @@ class ZenDesk {
     public function getToken()
     {
         return $this->token;
+    }
+
+    public function setDefaultCustomFields($values)
+    {
+        $this->default_fields = $values;
     }
 
     public function __construct($config)

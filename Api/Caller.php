@@ -21,6 +21,7 @@ class Caller {
 	public function setConfig($data)
 	{
 		$this->config = $data;
+		return $this;
 	}
 
 	private function accessTokenCall($access_token_url)
@@ -32,6 +33,7 @@ class Caller {
 	public function setApiUrl($url)
 	{
 		$this->api_url = $url;
+		return $this;
 	}
 
 	public function getRequest()
@@ -73,7 +75,9 @@ class Caller {
 			}
 		}
 
-		return false;
+		return [
+			'error' => 'Unexpected error'
+		];
 	}
 
 	public function beforeCall()
@@ -129,7 +133,9 @@ class Caller {
 		$result = $curl->get($this->api_url.'api'.$url, $data);
 
 		if(!is_array($result) && !is_object($result)) {
-			return [];
+			return [
+
+			];
 		}
 
 		return $result;
@@ -140,9 +146,14 @@ class Caller {
 		return $this->storage;
 	}
 
-	public function setStorage()
+	public function setStorage($storage = null)
 	{
-		$this->storage = &$_SESSION;
+		if(is_null($storage)) {
+			$this->storage = &$_SESSION;
+		} else {
+			$this->storage = $storage;
+		}
+		
 		return $this;
 	}
 
