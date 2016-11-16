@@ -42,6 +42,10 @@ class GDriveService {
         $client->setAuthConfig($this->client_secret_path);
     	$client->setRedirectUri($redirect_uri);
 
+        $this->client = $client;
+
+        dd($client);
+
         return $client;
     }
 
