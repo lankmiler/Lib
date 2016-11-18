@@ -15,7 +15,8 @@
         "php-curl-class/php-curl-class": "^7.0",
         "google/apiclient": "^2.0",
         "phpunit/phpunit": "5.3.*",
-        "phpunit/php-code-coverage": "^3.3.0"
+        "phpunit/php-code-coverage": "^3.3.0",
+        "symfony/http-foundation": "^3.1"
     },
     "version": "1.0.0",
     "autoload": {
